@@ -12,7 +12,7 @@ namespace ConvertToPDF.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-  [EnableCors("AllowAll")]
+    [EnableCors("AllowAll")]
     public class MergePDFsController : ControllerBase
     {
         [HttpPost]
@@ -56,14 +56,18 @@ namespace ConvertToPDF.Controllers
                     }
                 }
 
-                var outputPath = $"merged_{DateTime.Now.Ticks}.pdf";
-                using (var outputStream = System.IO.File.Create(outputPath))
+                using (var memoryStream = new MemoryStream())
                 {
-                    mergedPdf.Save(outputStream);
-                }
+                    mergedPdf.Save(memoryStream);
+                    memoryStream.Seek(0, SeekOrigin.Begin);
 
-                Console.WriteLine($"Merged PDF saved successfully: {outputPath}");
-                return Ok(new { FilePath = outputPath });
+                    // PDF =to byte array
+                    var pdfqData = memoryStream.ToArray();
+
+                    //byte array to Base64 
+                    var base64String = Convert.ToBase64String(pdfqData);
+                    return Ok(new { Base64Data = base64String });
+                }
             }
             catch (Exception ex)
             {

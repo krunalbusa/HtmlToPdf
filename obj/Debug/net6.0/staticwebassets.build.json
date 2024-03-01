@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "MvhLpYQ2a8HwZcklljadzkNe299zkf18DKO4LiJBe84=",
+  "Hash": "w6aspmp0SWc+yWu09djc1Kjh68EZZUEu7GhJl1dmq78=",
   "Source": "ConvertToPDF",
   "BasePath": "_content/ConvertToPDF",
   "Mode": "Default",
@@ -1193,6 +1193,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\Krunal\\source\\repos\\ConvertToPDF\\ConvertToPDF\\wwwroot\\merged_pdfs\\merged_638449129261572111.pdf",
+      "SourceId": "ConvertToPDF",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Krunal\\source\\repos\\ConvertToPDF\\ConvertToPDF\\wwwroot\\",
+      "BasePath": "_content/ConvertToPDF",
+      "RelativePath": "merged_pdfs/merged_638449129261572111.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\merged_pdfs\\merged_638449129261572111.pdf"
     }
   ]
 }

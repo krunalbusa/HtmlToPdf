@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "9kc79oyGpadLlWutVdA6aNICqGV/SlpsNWph/guJHEpf9vyXgL9Rphh5X0IU5rphY7VqJXbz2SBq4MulOAzNmQ==",
+  "dgSpecHash": "RwjZq1AaXOmiO3Pnhf7axffgeZjFgvldnWZYw3pjWEKcvoJeg3WidYLGUIllj7mdn4Cfs1Gt6dO1grLBEMuRiA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Krunal\\source\\repos\\ConvertToPDF\\ConvertToPDF\\ConvertToPDF.csproj",
   "expectedPackageFiles": [
@@ -27,6 +27,7 @@
     "C:\\Users\\Krunal\\.nuget\\packages\\microsoft.win32.primitives\\4.3.0\\microsoft.win32.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\Krunal\\.nuget\\packages\\microsoft.win32.registry\\4.3.0\\microsoft.win32.registry.4.3.0.nupkg.sha512",
     "C:\\Users\\Krunal\\.nuget\\packages\\newtonsoft.json\\9.0.1\\newtonsoft.json.9.0.1.nupkg.sha512",
+    "C:\\Users\\Krunal\\.nuget\\packages\\pdfiumviewer\\2.13.0\\pdfiumviewer.2.13.0.nupkg.sha512",
     "C:\\Users\\Krunal\\.nuget\\packages\\pdfsharpcore\\1.3.63\\pdfsharpcore.1.3.63.nupkg.sha512",
     "C:\\Users\\Krunal\\.nuget\\packages\\portable.bouncycastle\\1.8.9\\portable.bouncycastle.1.8.9.nupkg.sha512",
     "C:\\Users\\Krunal\\.nuget\\packages\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
@@ -99,5 +100,16 @@
     "C:\\Users\\Krunal\\.nuget\\packages\\system.xml.xdocument\\4.0.11\\system.xml.xdocument.4.0.11.nupkg.sha512",
     "C:\\Users\\Krunal\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'PdfiumViewer 2.13.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "libraryId": "PdfiumViewer",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }

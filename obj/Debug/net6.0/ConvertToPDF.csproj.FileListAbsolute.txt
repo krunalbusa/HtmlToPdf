@@ -50,3 +50,5 @@ C:\Users\Krunal\source\repos\ConvertToPDF\ConvertToPDF\bin\Debug\net6.0\Microsof
 C:\Users\Krunal\source\repos\ConvertToPDF\ConvertToPDF\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\Users\Krunal\source\repos\ConvertToPDF\ConvertToPDF\bin\Debug\net6.0\BouncyCastle.Crypto.dll
 C:\Users\Krunal\source\repos\ConvertToPDF\ConvertToPDF\obj\Debug\net6.0\ConvertToPDF.sourcelink.json
+C:\Users\Krunal\source\repos\ConvertToPDF\ConvertToPDF\bin\Debug\net6.0\PdfiumViewer.dll
+C:\Users\Krunal\source\repos\ConvertToPDF\ConvertToPDF\bin\Debug\net6.0\nl\PdfiumViewer.resources.dll
