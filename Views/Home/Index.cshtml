@@ -1,0 +1,150 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fax Form</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+    <style>
+       
+        body {
+            margin: 1.6cm 1.5cm 1.5cm 1.5cm; /* top right bottom left */
+        }
+   
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12" id="faxForm" style="width: 21cm; margin: auto;">
+                <div class="border border-dark p-3">
+                    <h1 class="text-left">FAX</h1>
+                </div>
+                <form>
+                    <div class="form-row mt-3">
+                        <div class="form-group col-md-6">
+                            <label for="date">Date:</label>
+                            <input type="date" class="form-control border-dark border-2" id="date" value="2024-02-27">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="pages">Pages including cover sheet:</label>
+                            <input type="number" class="form-control border-dark border-2" id="pages" value="2">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <!-- Table for "To", "Phone", "Fax Phone" -->
+                                <div class="col-md-12">
+                                    <table class="table border border-dark border-2">
+                                        <tr>
+                                            <th colspan="2">To</th>
+                                        </tr>
+                                        <tr>
+                                            <td>To:</td>
+                                            <td><input type="text" class="form-control border-dark " id="to"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Phone:</td>
+                                            <td><input type="tel" class="form-control border-dark" id="Phone"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Fax Phone:</td>
+                                            <td><input type="tel" class="form-control border-dark" id="faxPhone"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                                <!-- Table for "From", "Phone", "Fax Phone" -->
+                                <div class="col-md-12">
+                                    <table class="table border border-dark border-2">
+                                        <tr>
+                                            <th colspan="2">From</th>
+                                        </tr>
+                                        <tr>
+                                            <td>From:</td>
+                                            <td><input type="text" class="form-control border-dark" id="from"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Phone:</td>
+                                            <td><input type="tel" class="form-control border-dark" id="fromPhone"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Fax Phone:</td>
+                                            <td><input type="tel" class="form-control border-dark" id="fromFaxPhone"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="note">Note:</label>
+                        <textarea class="form-control border-dark" id="note" rows="5"></textarea>
+                    </div>
+                </form>
+
+                
+            </div>
+            <div class="text-center">
+                <button type="button" id="rep" class="btn btn-info">Create Pdf</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(async function () {
+            $(document).on("click", "#rep", async function (event) {
+                event.preventDefault();
+
+                try {
+                    const element = document.getElementById("faxForm");
+                    var opt = {
+                        margin: 1,
+                        image: { type: 'jpeg', quality: 0.98 },
+                        html2canvas: { scale: 2 },
+                        jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+                    };
+                    const pdf = await html2pdf().set(opt).from(element).toPdf().get("pdf");
+                    const directoryPath = "D:\\downlods\\Downloads\\";
+                    const phoneNumber = $("#Phone").val();
+                    const filename = phoneNumber; // Assuming phoneNumber is already properly formatted
+                    const filePath = directoryPath.replace(/\\/g, "\\\\") + filename + ".pdf";
+                    console.log(filePath);
+                    await pdf.save(filename);
+
+                    const generatedPDFData = await pdf.output("datauristring");
+
+                    console.log("PDF saved!");
+                    $.ajax({
+                        url: "http://localhost:5242/mergePDFs",
+                        method: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify({
+                            filename1: filePath,
+                            filename2: "Fax test 1 pdf please ignore.pdf",
+                        }),
+                        success: function (response) {
+                            console.log("Merged PDF saved:", response);
+                        },
+                        error: function (error) {
+                            console.error("Error merging PDFs:", error);
+                        },
+                    });
+                } catch (error) {
+                    console.error("Error:", error);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
