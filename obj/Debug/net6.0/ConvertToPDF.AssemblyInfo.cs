@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ConvertToPDF")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7846ce058c4763102d0bbc272a940e3ee2e63afc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+88d97ba29db4cb092f8aa04b6c4896b73b8ecb67")]
 [assembly: System.Reflection.AssemblyProductAttribute("ConvertToPDF")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ConvertToPDF")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

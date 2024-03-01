@@ -107,21 +107,22 @@
 
                 try {
                     const element = document.getElementById("faxForm");
-                    var opt = {
+                    const opt = {
                         margin: 1,
-                        image: { type: 'jpeg', quality: 0.98 },
                         html2canvas: { scale: 2 },
                         jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
                     };
                     const pdf = await html2pdf().set(opt).from(element).toPdf().get("pdf");
-                    const directoryPath = "D:\\downlods\\Downloads\\";
+                    const pdfDataUri = await pdf.output("datauristring");
+                    const base64Data = pdfDataUri.substring(pdfDataUri.indexOf(',') + 1);
+                   /* const directoryPath = "D:\\downlods\\Downloads\\";
                     const phoneNumber = $("#Phone").val();
                     const filename = phoneNumber; // Assuming phoneNumber is already properly formatted
                     const filePath = directoryPath.replace(/\\/g, "\\\\") + filename + ".pdf";
                     console.log(filePath);
                     await pdf.save(filename);
 
-                    const generatedPDFData = await pdf.output("datauristring");
+                    const generatedPDFData = await pdf.output("datauristring");*/
 
                     console.log("PDF saved!");
                     $.ajax({
@@ -129,7 +130,7 @@
                         method: "POST",
                         contentType: "application/json",
                         data: JSON.stringify({
-                            filename1: filePath,
+                            pdfDataUri: base64Data,
                             filename2: "Fax test 1 pdf please ignore.pdf",
                         }),
                         success: function (response) {

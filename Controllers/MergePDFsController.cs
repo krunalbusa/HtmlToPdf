@@ -20,14 +20,31 @@ namespace ConvertToPDF.Controllers
         {
             try
             {
-                
-                var pdf1Data = await System.IO.File.ReadAllBytesAsync(request.filename1);
-                var pdf2Data = await System.IO.File.ReadAllBytesAsync(request.filename2);
-
-                var mergedPdf = new PdfDocument();
-                using (var pdf1 = PdfReader.Open(new MemoryStream(pdf1Data), PdfDocumentOpenMode.Import))
-                using (var pdf2 = PdfReader.Open(new MemoryStream(pdf2Data), PdfDocumentOpenMode.Import))
+                try
                 {
+                    byte[] pdf1Data = Convert.FromBase64String(request.pdfDataUri);
+                    // If no exception is thrown, the Base64 encoding is valid
+                }
+                catch (FormatException ex)
+                {
+                    Console.WriteLine($"Invalid Base64 encoding: {ex.Message}");
+
+                    // Return a response indicating the error to the client
+                    return BadRequest(new { Error = "Invalid Base64 encoding" });
+                }
+                byte[] pdfData = Convert.FromBase64String(request.pdfDataUri);
+
+                // Read the second PDF file as a byte array
+                byte[] pdf2Data = await System.IO.File.ReadAllBytesAsync(request.filename2);
+
+                // Handle the PDF data as needed
+                var mergedPdf = new PdfDocument();
+                using (var pdf1Stream = new MemoryStream(pdfData))
+                using (var pdf2Stream = new MemoryStream(pdf2Data))
+                {
+                    var pdf1 = PdfReader.Open(pdf1Stream, PdfDocumentOpenMode.Import);
+                    var pdf2 = PdfReader.Open(pdf2Stream, PdfDocumentOpenMode.Import);
+
                     foreach (PdfPage page in pdf1.Pages)
                     {
                         mergedPdf.AddPage(page);
@@ -58,7 +75,7 @@ namespace ConvertToPDF.Controllers
 
     public class MergeRequest
     {
-        public string filename1 { get; set; }
+        public string pdfDataUri { get; set; }
         public string filename2 { get; set; }
     }
 }
